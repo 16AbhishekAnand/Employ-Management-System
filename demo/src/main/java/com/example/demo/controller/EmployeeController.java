@@ -1,10 +1,10 @@
-package Controlller;
+package com.example.demo.controller;
 
-import Model.Employee;
-import Repositary.EmployeeDao;
+import com.example.demo.model.Employee;
+import com.example.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import Service.Employees;
+import com.example.demo.service.Employees;
 import java.util.List;
 
 @RestController
@@ -13,14 +13,13 @@ public class EmployeeController {
 
     @Autowired
     private Employees employees;
-    private  EmployeeDao employeeDao;
 
-    @GetMapping
+    @GetMapping("/data")
     public List<Employee> getEmployees() {
         return employees.getAllEmployelist();
     }
-    @PostMapping
+    @PostMapping("/empDetails")
     public void addEmployee(@RequestBody Employee employee) {
-        employeeDao.addEmployee(employee);
+        employees.addEmployee(employee);
     }
 }
